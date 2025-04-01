@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% block title %}Movie Review # {{ review.id }}{% endblock %} 
+{% block content %}
+<main>
+  <section class="container my-5">
+    <div class="row">
+      <h1>{{ review.title }}</h1>
+      <div class="col-12 col-lg-7 my-5">
+        <p>{{ review.text }}</p>
+        <p>
+          More about the movie: 
+          {% if review.source %}
+            <a href="{{ review.source }}">{{ review.source }}</a>
+          {% else %} No source specified {% endif %}
+        </p>
+        <p>
+          Link for friends:
+          <a href="{{ url_for('review_view', id=review.id, _external=True) }}">{{ url_for('review_view', id=review.id, _external=True) }}</a>
+        </p>
+      </div>
+      <div class="col-12 col-lg-5">
+        <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/illustration.png') }}" alt="" />
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
